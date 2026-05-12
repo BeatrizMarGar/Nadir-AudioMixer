@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nadir | Ambient Mixer</title>
+</head>
+<body>
+
+    <div id="app">
+        <header>
+            <h1>Nadir</h1>
+            <p>Mezclador de ambiente profesional</p>
+        </header>
+
+        <main class="mixer-interface">
+
+            <section class="tracks-grid">
+                
+                <div class="audio-card">
+                    <label for="rain">Lluvia</label>
+                    <input type="range" id="rain" min="0" max="1" step="0.01" value="0.5">
+                    <div class="status">Estado: <span id="rain_status">Esperando...</span></div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
