@@ -7,9 +7,8 @@ class App {
     }
 
     init(){
-        this.ui.sliders.rain.onInput((valor) => {
-            console.log(valor + "desde el init");
-            document.getElementById('rain_status').innerText = `Volumen: ${valor}`;
+        this.ui.sliders.air.onInput((valor) => {
+            document.getElementById('air_status').innerText = `Volumen: ${valor}`;
         });
     }
 }
