@@ -1,0 +1,5 @@
+{
+    "rain": "./lluvia.mp3",
+    "air": "./aire.mp3",
+    "storm": "./tormenta.mp3"
+}

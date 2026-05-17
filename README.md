@@ -36,3 +36,11 @@ Para garantizar la escalabilidad y facilitar el testing unitario, el proyecto si
 * **Testing:** Jest
 * **Arquitectura:** Patrón MVC (Model-View-Controller)
 * **Estilos:** CSS3 Moderno
+
+---
+
+## Créditos
+
+* **Aire:** Sound Effect by <a href="https://pixabay.com/es/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=56278">freesound_community</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=56278">Pixabay</a>
+* **Luvia:** Sound Effect by <a href="https://pixabay.com/es/users/donrain-26735743/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=210937">Franco Gonzalez</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=210937">Pixabay</a>
+* **Tormenta:** Sound Effect by <a href="https://pixabay.com/es/users/donrain-26735743/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=296171">Franco Gonzalez</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=296171">Pixabay</a>
