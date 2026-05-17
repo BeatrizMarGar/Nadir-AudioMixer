@@ -14,8 +14,6 @@ export default class AudioManager{
         this.masterGain.connect(this.ctx.destination);
     }
 
-    //metodo para cambiar de volumen en mastergain this.masterGain.gain.value = nuevoValor;
-
     changeVol(nuevoValor){
         if(this.masterGain){
             this.masterGain.gain.value = nuevoValor;
