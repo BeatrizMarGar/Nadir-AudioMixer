@@ -13,7 +13,8 @@ export default class SliderComponent{
 
     onInput(callback){
         this.input.addEventListener('input', (event) =>{
-            callback(event.target.value)
+            //callback(event.target.value)
+            callback(parseFloat(event.target.value));
         })
     }
 }

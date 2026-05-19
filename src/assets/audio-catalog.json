@@ -1,5 +1,5 @@
 {
-    "rain": "./lluvia.mp3",
-    "air": "./aire.mp3",
-    "storm": "./tormenta.mp3"
+    "rain": "./src/assets/lluvia.mp3",
+    "air": "./src/assets/aire.mp3",
+    "storm": "./src/assets/tormenta.mp3"
 }

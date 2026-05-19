@@ -19,7 +19,7 @@
                 
                 <div class="audio-card">
                     <label for="rain">Lluvia</label>
-                    <input type="range" id="rain" min="0" max="1" step="0.01" value="0.5">
+                    <input type="range" id="rain" min="0" max="1" step="0.01" value="0">
                     <div class="status">Estado: <span id="rain_status">Esperando...</span></div>
                 </div>
 
@@ -32,10 +32,31 @@
                 
                 <div class="audio-card">
                     <label for="air">Aire</label>
-                    <input type="range" id="air" min="0" max="1" step="0.01" value="0.5">
+                    <input type="range" id="air" min="0" max="1" step="0.01" value="0">
                     <div class="status">Estado: <span id="air_status">Esperando...</span></div>
                 </div>
 
+            </section>
+            
+            <br>
+            <br>
+
+            <section class="tracks-grid">
+                
+                <div class="audio-card">
+                    <label for="storm">Tormenta</label>
+                    <input type="range" id="storm" min="0" max="1" step="0.01" value="0">
+                    <div class="status">Estado: <span id="storm_status">Esperando...</span></div>
+                </div>
+
+            </section>
+            <section class="presets-container">
+                <h3>Presets (Mantén pulsado 2s para guardar, clic normal para cargar)</h3>
+                <div class="presets-row">
+                    <button class="preset-btn" data-preset="1">Preset 1</button>
+                    <button class="preset-btn" data-preset="2">Preset 2</button>
+                    <button class="preset-btn" data-preset="3">Preset 3</button>
+                </div>
             </section>
         </main>
     </div>
