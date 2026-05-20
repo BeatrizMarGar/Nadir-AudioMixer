@@ -4,8 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nadir | Ambient Mixer</title>
+    <link rel="stylesheet" href="./src/assets/css/style.css">
 </head>
 <body>
+
+    <div id="welcome-popup" class="popup-overlay">
+        <div class="popup-content">
+            <h2>Bienvenido a Nadir</h2>
+            <p>Hola, soy Beatriz Martín, desarrolladora FullStack enfocada en el desarrollo creativo y de experiencias web interactivas.</p>
+
+            <div class="tech-stack-showcase">
+                <h3>Core Técnico del Proyecto</h3>
+                <ul class="stack-list">
+                    <li><strong>Procesamiento de Audio:</strong> Web Audio API con decodificación paralela mediante <em>OfflineAudioContext</em> para optimizar la carga.</li>
+                    <li><strong>Arquitectura:</strong> JavaScript Vanilla (ES6+) bajo el paradigma de Programación Orientada a Objetos y diseño desacoplado.</li>
+                    <li><strong>Rendimiento:</strong> Animaciones fluidas a 60 FPS mediante <em>requestAnimationFrame</em> e interpolación lineal (Lerp).</li>
+                </ul>
+            </div>
+
+            <div class="popup-links">
+                <a href="https://github.com/BeatrizMarGar/Nadir-AudioMixer.git" target="_blank">GitHub</a>
+                <a href="http://www.linkedin.com/in/beatrizmartingarrido" target="_blank">LinkedIn</a>
+            </div>
+
+            <div id="popup-loading-area">
+                <p class="loader-status pulse-text">Sintonizando canales...</p>
+            </div>
+        </div>
+    </div>
 
     <div id="app">
         <header>
@@ -14,42 +40,7 @@
         </header>
 
         <main class="mixer-interface">
-
-            <section class="tracks-grid">
-                
-                <div class="audio-card">
-                    <label for="rain">Lluvia</label>
-                    <input type="range" id="rain" min="0" max="1" step="0.01" value="0">
-                    <div class="status">Estado: <span id="rain_status">Esperando...</span></div>
-                </div>
-
-            </section>
-
-            <br>
-            <br>
-
-            <section class="tracks-grid">
-                
-                <div class="audio-card">
-                    <label for="air">Aire</label>
-                    <input type="range" id="air" min="0" max="1" step="0.01" value="0">
-                    <div class="status">Estado: <span id="air_status">Esperando...</span></div>
-                </div>
-
-            </section>
             
-            <br>
-            <br>
-
-            <section class="tracks-grid">
-                
-                <div class="audio-card">
-                    <label for="storm">Tormenta</label>
-                    <input type="range" id="storm" min="0" max="1" step="0.01" value="0">
-                    <div class="status">Estado: <span id="storm_status">Esperando...</span></div>
-                </div>
-
-            </section>
             <section class="presets-container">
                 <h3>Presets (Mantén pulsado 2s para guardar, clic normal para cargar)</h3>
                 <div class="presets-row">
@@ -58,6 +49,33 @@
                     <button class="preset-btn" data-preset="3">Preset 3</button>
                 </div>
             </section>
+
+            <div class="tracks-container">
+                <section class="tracks-grid">
+                    <div class="audio-card">
+                        <label for="rain">Lluvia</label>
+                        <input type="range" id="rain" min="0" max="1" step="0.01" value="0">
+                        <div class="status">Estado: <span id="rain_status">Esperando...</span></div>
+                    </div>
+                </section>
+
+                <section class="tracks-grid">
+                    <div class="audio-card">
+                        <label for="music">Música</label>
+                        <input type="range" id="music" min="0" max="1" step="0.01" value="0">
+                        <div class="status">Estado: <span id="music_status">Esperando...</span></div>
+                    </div>
+                </section>
+                
+                <section class="tracks-grid">
+                    <div class="audio-card">
+                        <label for="birds">Pájaros</label>
+                        <input type="range" id="birds" min="0" max="1" step="0.01" value="0">
+                        <div class="status">Estado: <span id="birds_status">Esperando...</span></div>
+                    </div>
+                </section>
+            </div>
+
         </main>
     </div>
 

@@ -12,9 +12,12 @@ export default class SliderComponent{
     }
 
     onInput(callback){
+        if (!this.input) {
+            console.error(`Error: El elemento input con ID "${this.id}" no se encontró en el DOM.`);
+            return;
+        }
         this.input.addEventListener('input', (event) =>{
-            //callback(event.target.value)
             callback(parseFloat(event.target.value));
-        })
+        });
     }
 }
