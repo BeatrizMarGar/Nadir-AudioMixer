@@ -9,40 +9,70 @@ class App {
     }
 
     async init() {
-        console.log("1. Iniciando descarga y decodificación automática...");
-        // Al terminar este await, los archivos ya están descargados Y decodificados automáticamente
         await this.audio.preloadTracks();
         
-        console.log("2. Todo procesado en RAM. Mostrando botón y configurando interfaz...");
         this.setupEvents();
         this.setupPresets();
+        this.setupMasterDial();
+        this.setupSpeakerAnimation();
 
         this.ui.showReadyButton(() => {
-            console.log("Botón ¡Adelante! pulsado. Conectando buffers al hardware de audio.");
             this.audio.inicializarCanalesReales();
         });
     }
 
     setupEvents() {
-        const mySounds = this.audio.trackIds;
-        
-        if (mySounds.length === 0) {
-            console.warn("No se detectaron IDs de audio en el catálogo.");
-            return;
-        }
-
-        mySounds.forEach(id => {
+        Object.keys(this.ui.sliders).forEach(id => {
             const sliderNode = this.ui.sliders[id];
             if (sliderNode) {
                 sliderNode.onInput((valor) => {
                     this.audio.setTrackVolume(id, valor);
                     
+                    const pct = valor * 100;
+                    this.ui.updateScreenText(`${id.toUpperCase()}:${pct.toFixed(0)}%`);
+
+                    const fill = document.getElementById(`fill-${id}`);
+                    const thumb = document.getElementById(`thumb-${id}`);
+                    const valEl = document.getElementById(`val-${id}`);
+                    
+                    if (fill) fill.style.height = pct + '%';
+                    if (thumb) thumb.style.bottom = pct + '%';
+                    if (valEl) valEl.textContent = pct.toFixed(0);
+
                     const statusLabel = document.getElementById(`${id}_status`);
                     if (statusLabel) {
                         statusLabel.innerHTML = `Volumen: ${valor.toFixed(2)}`;
                     }
                 });
             }
+        });
+    }
+
+    setupMasterDial() {
+        this.ui.bindDialEvent((updatedMasterValue) => {
+            this.ui.setMasterUI(updatedMasterValue);
+            const norm = Math.max(0, Math.min(100, updatedMasterValue)) / 100;
+            this.audio.changeVol(norm);
+
+            Object.keys(this.ui.sliders).forEach(id => {
+                const sliderNode = this.ui.sliders[id];
+                if (sliderNode && sliderNode.input) {
+                    sliderNode.input.value = norm;
+                    this.audio.setTrackVolume(id, norm);
+                }
+            });
+        });
+    }
+
+    setupSpeakerAnimation() {
+        this.ui.startSpeakerAnimation(() => {
+            let sum = 0;
+            const keys = Object.keys(this.ui.sliders);
+            keys.forEach(id => {
+                const slider = this.ui.sliders[id];
+                if (slider) sum += slider.getValue();
+            });
+            return sum / keys.length;
         });
     }
 
@@ -55,15 +85,13 @@ class App {
 
     savePreset(presetId) {
         const currentConfiguration = {};
-        const mySounds = this.audio.trackIds;
-
-        mySounds.forEach(id => {
+        
+        Object.keys(this.ui.sliders).forEach(id => {
             const slider = this.ui.sliders[id];
             currentConfiguration[id] = slider ? slider.getValue() : 0;
         });
 
         localStorage.setItem(`nadir_preset_${presetId}`, JSON.stringify(currentConfiguration));
-        console.log(`Preset guardado [${presetId}]:`, currentConfiguration);
     }
 
     loadPreset(presetId) {
@@ -71,7 +99,6 @@ class App {
         if (!rawData) return;
         
         const configuration = JSON.parse(rawData);
-        console.log(`Cargando preset [${presetId}]:`, configuration);
 
         Object.entries(configuration).forEach(([soundId, valorDestino]) => {
             this.ui.updateSliderUI(soundId, valorDestino, (valorIntermedio) => {

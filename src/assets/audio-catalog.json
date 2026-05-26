@@ -1,5 +1,7 @@
 {
     "music": "./src/assets/meditacion.mp3",
     "rain": "./src/assets/lluvia.mp3",
-    "birds": "./src/assets/pajaros.mp3"
+    "birds": "./src/assets/pajaros.mp3",
+    "river": "./src/assets/rio.mp3",
+    "meditation": "./src/assets/cuenco.mp3"
 }

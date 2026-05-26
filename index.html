@@ -3,82 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nadir | Ambient Mixer</title>
+    <title>Nadir — Audio Mixer</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' shape-rendering='crispEdges'%3E%3Crect width='32' height='32' fill='%230e1628'/%3E%3Crect x='2' y='2' width='28' height='28' fill='%237a5c1e'/%3E%3Crect x='2' y='2' width='28' height='3' fill='%23e8b830'/%3E%3Crect x='2' y='27' width='28' height='3' fill='%23e8b830'/%3E%3Crect x='2' y='2' width='3' height='28' fill='%23e8b830'/%3E%3Crect x='27' y='2' width='3' height='28' fill='%23e8b830'/%3E%3Crect x='9' y='7' width='3' height='18' fill='%23f9e4b7'/%3E%3Crect x='12' y='7' width='7' height='3' fill='%23f9e4b7'/%3E%3Crect x='12' y='15' width='7' height='3' fill='%23f9e4b7'/%3E%3Crect x='12' y='22' width='7' height='3' fill='%23f9e4b7'/%3E%3Crect x='18' y='9' width='3' height='7' fill='%23f9e4b7'/%3E%3Crect x='19' y='17' width='3' height='6' fill='%23f9e4b7'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="./src/assets/css/style.css">
 </head>
 <body>
 
-    <div id="welcome-popup" class="popup-overlay">
-        <div class="popup-content">
-            <h2>Bienvenido a Nadir</h2>
-            <p>Hola, soy Beatriz Martín, desarrolladora FullStack enfocada en el desarrollo creativo y de experiencias web interactivas.</p>
-
-            <div class="tech-stack-showcase">
-                <h3>Core Técnico del Proyecto</h3>
-                <ul class="stack-list">
-                    <li><strong>Procesamiento de Audio:</strong> Web Audio API con decodificación paralela mediante <em>OfflineAudioContext</em> para optimizar la carga.</li>
-                    <li><strong>Arquitectura:</strong> JavaScript Vanilla (ES6+) bajo el paradigma de Programación Orientada a Objetos y diseño desacoplado.</li>
-                    <li><strong>Rendimiento:</strong> Animaciones fluidas a 60 FPS mediante <em>requestAnimationFrame</em> e interpolación lineal (Lerp).</li>
-                </ul>
-            </div>
-
-            <div class="popup-links">
-                <a href="https://github.com/BeatrizMarGar/Nadir-AudioMixer.git" target="_blank">GitHub</a>
-                <a href="http://www.linkedin.com/in/beatrizmartingarrido" target="_blank">LinkedIn</a>
-            </div>
-
+    <div id="welcome-popup">
+        <div class="welcome-box">
+            <h2 class="welcome-title">✿ NADIR MIXER ✿</h2>
+            <p class="welcome-desc">
+                ¡Hola! Soy Beatriz Martín, desarrolladora FullStack, y te doy la bienvenida a Nadir, un mezclador de audio ambiental desarrollado con la Web Audio API nativa bajo una arquitectura desacoplada.<br><br>
+                Combina canales analizados en tiempo real para diseñar tu atmósfera perfecta y gestiona tus configuraciones personalizadas a través de los presets rápidos.
+            </p>
             <div id="popup-loading-area">
-                <p class="loader-status pulse-text">Sintonizando canales...</p>
+                <div class="loader-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <p class="loader-status">Cargando canales...</p>
             </div>
         </div>
     </div>
 
-    <div id="app">
-        <header>
-            <h1>Nadir</h1>
-            <p>Mezclador de ambiente profesional</p>
-        </header>
+    <div id="info-popup">
+        <div class="popup-box">
+            <button class="popup-close" id="info-close">✕ ESC</button>
+            <h2>✿ NADIR — INFO ✿</h2>
+            <p>¡Hola, soy Beatriz Martín! Me defino como desarrolladora Full Stack especialista en proyectos creativos e interactivos. Trabajo transformando ideas en experiencias web reales, mezclando tecnologías como Node.js, React y JavaScript con entornos inmersivos en Three.js, Realidad Aumentada (WebXR) y modelado 3D. Me enfoco en construir soluciones web completas, cuidando tanto el rendimiento del código como la experiencia del usuario.
+                <br><br>
+                <a href="mailto:martin_beatriz94@hotmail.com">¿Hablamos?</a>
+            </p>
+        </div>
+    </div>
 
-        <main class="mixer-interface">
-            
-            <section class="presets-container">
-                <h3>Presets (Mantén pulsado 2s para guardar, clic normal para cargar)</h3>
-                <div class="presets-row">
-                    <button class="preset-btn" data-preset="1">Preset 1</button>
-                    <button class="preset-btn" data-preset="2">Preset 2</button>
-                    <button class="preset-btn" data-preset="3">Preset 3</button>
+    <div class="radio-wrap">
+        <div class="radio-body">
+            <div class="radio-inner">
+
+                <div class="radio-top">
+                    <div class="brand-badge"><span>✿ NADIR ✿</span></div>
+                    <div class="mini-screen">
+                        <div class="mini-screen-text" id="screen">AMBIENT</div>
+                    </div>
                 </div>
-            </section>
 
-            <div class="tracks-container">
-                <section class="tracks-grid">
-                    <div class="audio-card">
-                        <label for="rain">Lluvia</label>
-                        <input type="range" id="rain" min="0" max="1" step="0.01" value="0">
-                        <div class="status">Estado: <span id="rain_status">Esperando...</span></div>
+                <div class="radio-mid">
+                    <div class="speaker-grille">
+                        <div class="grille-cloth" id="grille">
+                            <div class="speaker-cone"></div>
+                        </div>
                     </div>
-                </section>
+                    <div class="dial-section">
+                        <div class="dial-outer" id="dial-outer" title="Master Volume">
+                            <div class="dial-inner">
+                                <div class="dial-dot" id="dial-dot"></div>
+                            </div>
+                        </div>
+                        <div class="dial-label">MASTER</div>
+                        <div class="dial-val" id="dial-val">0%</div>
+                    </div>
+                </div>
 
-                <section class="tracks-grid">
-                    <div class="audio-card">
-                        <label for="music">Música</label>
-                        <input type="range" id="music" min="0" max="1" step="0.01" value="0">
-                        <div class="status">Estado: <span id="music_status">Esperando...</span></div>
+                <div class="nameplate">
+                    <div>
+                        <div class="nameplate-name">BEATRIZ MARTÍN</div>
+                        <div class="nameplate-role">FULLSTACK DEVELOPER</div>
                     </div>
-                </section>
-                
-                <section class="tracks-grid">
-                    <div class="audio-card">
-                        <label for="birds">Pájaros</label>
-                        <input type="range" id="birds" min="0" max="1" step="0.01" value="0">
-                        <div class="status">Estado: <span id="birds_status">Esperando...</span></div>
+                    <div class="nameplate-divider"></div>
+                    <div class="nameplate-contact">
+                        <a href="mailto:martin_beatriz94@hotmail.com">martin_beatriz94@hotmail.com</a><br>
+                        <a href="https://www.linkedin.com/in/beatrizmartingarrido" target="_blank" rel="noopener noreferrer">linkedin</a> · 
+                        <a href="https://github.com/BeatrizMarGar/Nadir-AudioMixer" target="_blank" rel="noopener noreferrer">github</a>
                     </div>
-                </section>
+                </div>
+
+                <div class="faders-section">
+                    <div class="faders-title">✦ CANALES ✦</div>
+                    <div class="faders-row" id="faders-row">
+
+                        <div class="fader-col">
+                            <div class="fader-name">LLUVIA</div>
+                            <div class="fader-track">
+                                <div class="fader-fill" id="fill-rain" style="background: repeating-linear-gradient(to top, #88ccee 0px, #88ccee 4px, #55aacc 4px, #55aacc 5px); height: 0%;"></div>
+                                <div class="fader-thumb" id="thumb-rain" style="background: #88ccee; border-color: #55aacc; bottom: 0%;"></div>
+                                <input type="range" class="fader-input" id="rain" min="0" max="1" step="0.01" value="0" aria-label="Lluvia">
+                            </div>
+                            <div class="fader-val" id="val-rain">0</div>
+                        </div>
+
+                        <div class="fader-col">
+                            <div class="fader-name">MÚSICA</div>
+                            <div class="fader-track">
+                                <div class="fader-fill" id="fill-music" style="background: repeating-linear-gradient(to top, #ee88aa 0px, #ee88aa 4px, #cc5577 4px, #cc5577 5px); height: 0%;"></div>
+                                <div class="fader-thumb" id="thumb-music" style="background: #ee88aa; border-color: #cc5577; bottom: 0%;"></div>
+                                <input type="range" class="fader-input" id="music" min="0" max="1" step="0.01" value="0" aria-label="Música">
+                            </div>
+                            <div class="fader-val" id="val-music">0</div>
+                        </div>
+
+                        <div class="fader-col">
+                            <div class="fader-name">PÁJAROS</div>
+                            <div class="fader-track">
+                                <div class="fader-fill" id="fill-birds" style="background: repeating-linear-gradient(to top, #88cc55 0px, #88cc55 4px, #559933 4px, #559933 5px); height: 0%;"></div>
+                                <div class="fader-thumb" id="thumb-birds" style="background: #88cc55; border-color: #559933; bottom: 0%;"></div>
+                                <input type="range" class="fader-input" id="birds" min="0" max="1" step="0.01" value="0" aria-label="Pájaros">
+                            </div>
+                            <div class="fader-val" id="val-birds">0</div>
+                        </div>
+
+                        <div class="fader-col">
+                            <div class="fader-name">Río</div>
+                            <div class="fader-track">
+                                <div class="fader-fill" id="fill-river" style="background: repeating-linear-gradient(to top, #aa88dd 0px, #aa88dd 4px, #7755bb 4px, #7755bb 5px); height: 0%;"></div>
+                                <div class="fader-thumb" id="thumb-river" style="background: #aa88dd; border-color: #7755bb; bottom: 0%;"></div>
+                                <input type="range" class="fader-input" id="river" min="0" max="1" step="0.01" value="0" aria-label="Río">
+                            </div>
+                            <div class="fader-val" id="val-river">0</div>
+                        </div>
+
+                        <div class="fader-col">
+                            <div class="fader-name">Meditación</div>
+                            <div class="fader-track">
+                                <div class="fader-fill" id="fill-meditation" style="background: repeating-linear-gradient(to top, #eeaa44 0px, #eeaa44 4px, #cc7722 4px, #cc7722 5px); height: 0%;"></div>
+                                <div class="fader-thumb" id="thumb-meditation" style="background: #eeaa44; border-color: #cc7722; bottom: 0%;"></div>
+                                <input type="range" class="fader-input" id="meditation" min="0" max="1" step="0.01" value="0" aria-label="Meditación">
+                            </div>
+                            <div class="fader-val" id="val-meditation">0</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="presets-section">
+                    <div class="presets-label">— PRESETS —</div>
+                    <div class="presets-label">Pulsa durante 2 segundos para guardar un nuevo preset</div>
+                    <div class="presets-row">
+                        <button class="preset-btn" data-preset="1" data-icon="🌧"><span class="p-label">Preset 1</span></button>
+                        <button class="preset-btn" data-preset="2" data-icon="🌿"><span class="p-label">Preset 2</span></button>
+                        <button class="preset-btn" data-preset="3" data-icon="🔥"><span class="p-label">Preset 3</span></button>
+                        <button class="preset-btn" data-preset="4" data-icon="🌙"><span class="p-label">Preset 4</span></button>
+                    </div>
+                </div>
+
+                <div class="bottom-bar">
+                    <button class="icon-btn btn-power" id="info-open" title="Info">
+                        <i class="ti ti-info-circle" aria-hidden="true"></i>
+                    </button>
+                    
+                    <a class="icon-btn btn-linkedin" href="https://www.linkedin.com/in/beatrizmartingarrido" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <i class="ti ti-brand-linkedin" aria-hidden="true"></i>
+                    </a>
+                    
+                    <a class="icon-btn btn-github" href="https://github.com/BeatrizMarGar/Nadir-AudioMixer" title="GitHub" target="_blank" rel="noopener noreferrer">
+                        <i class="ti ti-brand-github" aria-hidden="true"></i>
+                    </a>
+                </div>
+
             </div>
-
-        </main>
+        </div>
     </div>
 
     <script type="module" src="src/main.js"></script>
+
 </body>
 </html>
